@@ -11,19 +11,16 @@ import {
   Put,
 } from '@nestjs/common';
 import { CreateSongDto } from './dto/create-song-dto';
+import { Song } from './songs.entity';
 import { SongsService } from './songs.service';
 
 @Controller('songs')
 export class SongsController {
   constructor(private songsService: SongsService) {}
 
-  @Get()
-  findAll() {
-    return this.songsService.findAll();
-  }
 
   @Post()
-  create(@Body() createSongDto: CreateSongDto) {
+  create(@Body() createSongDto: CreateSongDto): Promise<Song> {
     return this.songsService.create(createSongDto);
   }
 
