@@ -7,8 +7,20 @@ GET http://localhost:3000/songs
 # Fetch a single song
 GET http://localhost:3000/songs/1
 
+
+
 # Create a new song
 POST http://localhost:3000/songs
+
+Content-Type: application/json
+{
+  "title": "Test Song",
+  "artist": ["Artist A", "Artist B"],
+  "releasedDate": "2024-10-19",
+  "duration": "03:15"
+}
+
+
 
 #Update a song 
 PUT http://localhost:3000/songs/1
