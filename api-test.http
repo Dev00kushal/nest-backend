@@ -1,0 +1,17 @@
+# Test API  
+GET http://localhost:3000/
+
+# Fech all of the songs
+GET http://localhost:3000/songs
+
+# Fetch a single song
+GET http://localhost:3000/songs/1
+
+# Create a new song
+POST http://localhost:3000/songs
+
+#Update a song 
+PUT http://localhost:3000/songs/1
+
+#Delete a song
+DELETE http://localhost:3000/songs/1
