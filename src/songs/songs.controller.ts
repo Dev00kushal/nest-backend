@@ -11,20 +11,21 @@ import {
   Put,
 } from '@nestjs/common';
 import { CreateSongDto } from './dto/create-song-dto';
+import { Song } from './songs.entity';
 import { SongsService } from './songs.service';
 
 @Controller('songs')
 export class SongsController {
   constructor(private songsService: SongsService) {}
 
-  @Get()
-  findAll() {
-    return this.songsService.findAll();
+  @Post()
+  create(@Body() createSongDto: CreateSongDto): Promise<Song> {
+    return this.songsService.create(createSongDto);
   }
 
-  @Post()
-  create(@Body() createSongDto: CreateSongDto) {
-    return this.songsService.create(createSongDto);
+  @Get()
+  findAll(): Promise<Song[]> {
+    return this.songsService.findAll();
   }
 
   @Get(':id')
@@ -33,10 +34,9 @@ export class SongsController {
     id: number,
   ) {
     try {
-      return `return one song based on the ${typeof  id}`;
-      
+      return this.songsService.findOne(id);
     } catch (error) {
-      throw new HttpException("BAD REQUEST",HttpStatus.NOT_ACCEPTABLE)
+      throw new HttpException('BAD REQUEST', HttpStatus.NOT_ACCEPTABLE);
     }
   }
 
