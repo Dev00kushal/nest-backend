@@ -21,4 +21,14 @@ export class SongsService {
 
     return  this.songsRepo.save(song);
   }
+
+  findAll(): Promise<Song[]>{
+    return this.songsRepo.find();
+  }
+
+
+  findOne(id:number): Promise<Song>{
+    return this.songsRepo.findOneBy({id});
+
+  }
 }
