@@ -11,6 +11,7 @@ import {
   Put,
 } from '@nestjs/common';
 import { CreateSongDto } from './dto/create-song-dto';
+import { UpdateSongDto } from './dto/update-song-dto';
 import { Song } from './songs.entity';
 import { SongsService } from './songs.service';
 
@@ -41,12 +42,14 @@ export class SongsController {
   }
 
   @Put(':id')
-  update() {
-    return 'update a song based on the id';
+  update(@Param('id',ParseIntPipe) id : number, @Body() updateSongDto:UpdateSongDto,) : Promise<void>{
+  return  this.songsService.update(id,updateSongDto);
+
   }
 
   @Delete(':id')
-  delete() {
-    return 'delete the song based on the id ';
+  delete(@Param('id',ParseIntPipe) id:number): Promise<void> {
+   return this.songsService.remove(id);
   }
+
 }
